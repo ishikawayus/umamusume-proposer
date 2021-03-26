@@ -1,53 +1,27 @@
 <script lang="ts">
-  import Counter from '$lib/Counter.svelte';
+  import SkillSelector from '$lib/components/SkillSelector.svelte';
+  import CardCombiner from '$lib/components/CardCombiner.svelte';
+
+  let selectedSkills: string[] = [];
+
+  function handleSelectedSkillsChange(event: CustomEvent) {
+    selectedSkills = event.detail;
+  }
 </script>
 
 <main>
-  <h1>Hello world!</h1>
-
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
+  <SkillSelector on:selectedSkillsChange={handleSelectedSkillsChange} />
+  <CardCombiner {selectedSkills} />
 </main>
 
 <style lang="scss">
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
+      'Hiragino Sans', Meiryo, sans-serif;
   }
 
   main {
-    text-align: center;
-    padding: 1em;
+    width: 800px;
     margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 4rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 2rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
-
-    p {
-      max-width: none;
-    }
   }
 </style>
